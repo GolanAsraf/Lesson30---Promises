@@ -1,11 +1,29 @@
 'use strcit'
 
+const searchList = [
+    'counter-strike',
+    'dota',
+    'fortnite',
+    'overwatch',
+    'pubg',
+    'rainbow six',
+    'valorant',
+    'apex legends',
+]
+
 function onInit() {
     console.log('Main Controller')
+    onSearch(true)
 }
 
-function onSearch() {
-    const searchValue = document.querySelector('#search-input').value
+function onSearch(randomSearch = false) {
+
+    var searchValue
+    if (randomSearch) {
+        searchValue = searchList[Math.floor(Math.random() * searchList.length)]
+    } else {
+        searchValue = document.querySelector('#search-input').value
+    }
 
     searchYoutube(searchValue)
         .then(res => {
@@ -29,7 +47,7 @@ function onSearch() {
 function renderYTResults(res) {
     const ytContainer = document.querySelector('.video-list');
     const videoPlayer = document.querySelector('.video-player');
-    
+
     ytContainer.innerHTML = '';
 
     res.forEach(item => {
