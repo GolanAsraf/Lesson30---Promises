@@ -1,0 +1,58 @@
+.body-layout {
+    display: grid;
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 1250px) minmax(16px, 1fr);
+    grid-template-rows: 60px auto 60px;
+    height: 100vh;
+}
+
+.header-layout {
+    grid-column: 2;
+    grid-row: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.header-layout .header {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.search-container {
+    grid-column: 2;
+    grid-row: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 80px;
+}
+
+.main-layout {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 315px 1fr;
+    column-gap: 16px;
+}
+
+iframe {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.wiki-container {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.video-list {
+    grid-column: 1;
+    grid-row: 1 span 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

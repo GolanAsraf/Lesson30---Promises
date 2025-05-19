@@ -1,0 +1,10 @@
+.wiki-container a {
+    text-decoration: none; /* Remove underline */
+    color: #0e67a2; /* Light blue color */
+    font-size: 16px;
+}
+
+.wiki-container a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+    color: #3498db; /* Slightly darker blue on hover */
+}

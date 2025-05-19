@@ -1,0 +1,38 @@
+iframe {
+    margin: 0 auto;
+}
+
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.video-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #2d2d2d;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2d2d2d;
+    width: 100%;
+}
+
+.video-thumbnail {
+    width: 120px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e66f00;
+    text-decoration: none;
+}
+
+.video-title:hover {
+    text-decoration: underline;
+}
