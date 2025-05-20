@@ -6,7 +6,9 @@
 
 .search-history {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 10px; /* Add spacing between items */
+    max-width: 100%; /* Ensure it doesn't exceed the screen width */
 }
 
 .search-item {
