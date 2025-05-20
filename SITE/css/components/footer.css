@@ -1,0 +1,24 @@
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-history {
+    display: flex;
+    gap: 10px;
+}
+
+.search-item {
+    color: #333; /* Default text color */
+    cursor: pointer; /* Keep it clickable */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    background: none; /* Remove background */
+    padding: 0; /* Remove padding */
+    border-radius: 0; /* Remove rounded corners */
+}
+
+.search-item:hover {
+    color: #0073e6; /* Highlight text color on hover */
+    text-decoration: underline; /* Optional: Add underline on hover */
+}

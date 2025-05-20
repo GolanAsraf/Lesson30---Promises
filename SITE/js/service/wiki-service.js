@@ -4,7 +4,6 @@ function searchWiki(value) {
     const WIKI_API_URL = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${value}&format=json&origin=*`;
     return axios.get(WIKI_API_URL)
         .then(response => {
-            console.log('Wiki data:', response.data);
             return response.data.query.search;
         })
         .catch(err => {

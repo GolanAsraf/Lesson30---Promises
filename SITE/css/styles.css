@@ -9,6 +9,8 @@
 @import url('./components/body.css');
 @import url('./components/youtube.css');
 @import url('./components/wiki.css');
+@import url('./components/footer.css');
+@import url('./components/modal.css');
 
 /* MQ */
 @import url('./setup/mq.css');

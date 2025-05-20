@@ -1,3 +1,10 @@
+.wiki-container {
+    max-height: 300px; /* Set a maximum height for the container */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    padding: 10px; /* Add some padding for better readability */
+    border-radius: 5px; /* Optional: Add rounded corners */
+}
+
 .wiki-container a {
     text-decoration: none; /* Remove underline */
     color: #0e67a2; /* Light blue color */

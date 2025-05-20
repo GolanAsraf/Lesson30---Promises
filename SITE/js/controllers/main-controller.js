@@ -12,8 +12,8 @@ const searchList = [
 ]
 
 function onInit() {
-    console.log('Main Controller')
     onSearch(true)
+    loadSearchHistory()
 }
 
 function onSearch(randomSearch = false) {
@@ -25,9 +25,21 @@ function onSearch(randomSearch = false) {
         searchValue = document.querySelector('#search-input').value
     }
 
+    var searchHistory = loadFromStorage(searchValue + 'YT_DB')
+
+    if (searchHistory) {
+        renderYTResults(searchHistory)
+        renderWikiResults(loadFromStorage(searchValue + 'WIKI_DB'))
+
+        return
+    }
+
     searchYoutube(searchValue)
         .then(res => {
             renderYTResults(res)
+            saveToStorage(searchValue + 'YT_DB', res)
+            loadSearchHistory()
+
             return res
         })
         .catch(err => {
@@ -37,6 +49,9 @@ function onSearch(randomSearch = false) {
     searchWiki(searchValue)
         .then(res => {
             renderWikiResults(res)
+            saveToStorage(searchValue + 'WIKI_DB', res)
+            loadSearchHistory()
+
             return res
         })
         .catch(err => {
@@ -46,9 +61,20 @@ function onSearch(randomSearch = false) {
 
 function renderYTResults(res) {
     const ytContainer = document.querySelector('.video-list');
-    const videoPlayer = document.querySelector('.video-player');
+    const videoPlayer = document.querySelector('.video-player'); // Assuming this is the iframe element
 
     ytContainer.innerHTML = '';
+
+    // Update the iframe to the first video link
+    if (res.length > 0) {
+        const firstVideoId = res[0].id.videoId;
+        const firstVideoUrl = `https://www.youtube.com/embed/${firstVideoId}`;
+        if (videoPlayer) {
+            videoPlayer.src = firstVideoUrl; // Set the iframe's src to the first video
+        } else {
+            console.error('Video player iframe not found');
+        }
+    }
 
     res.forEach(item => {
         const videoId = item.id.videoId;
@@ -100,4 +126,45 @@ function renderWikiResults(res) {
         const pageUrl = `https://en.wikipedia.org/?curid=${pageId}`
         wikiContainer.innerHTML += `<a href="${pageUrl}" target="_blank"><h3>${item.title}</h3><p>${item.snippet}</p></a>`
     })
+}
+
+function loadSearchHistory() {
+    const searchHistory = getSearchHistory()
+    const searchHistoryContainer = document.querySelector('.search-history')
+
+    searchHistoryContainer.innerHTML = ''
+
+    searchHistory.forEach(item => {
+        const searchItem = document.createElement('div')
+        searchItem.classList.add('search-item')
+        searchItem.textContent = item
+        searchItem.addEventListener('click', () => {
+            document.querySelector('#search-input').value = item
+            onSearch()
+        })
+        searchHistoryContainer.appendChild(searchItem)
+    })
+}
+
+function onClearHistory() {
+    // Show the modal
+    const modal = document.getElementById('confirm-modal');
+    modal.classList.remove('hidden');
+}
+
+function onConfirmClearHistory() {
+    // Clear the search history
+    localStorage.clear(); // Assuming search history is stored in localStorage
+    const searchHistoryContainer = document.querySelector('.search-history');
+    searchHistoryContainer.innerHTML = ''; // Clear the UI
+
+    // Hide the modal
+    const modal = document.getElementById('confirm-modal');
+    modal.classList.add('hidden');
+}
+
+function onCancelClearHistory() {
+    // Hide the modal without clearing history
+    const modal = document.getElementById('confirm-modal');
+    modal.classList.add('hidden');
 }
