@@ -41,10 +41,23 @@
         </div>
     </div>
 
+    <div id="theme-modal" class="modal hidden">
+        <div class="modal-content">
+            <p>Select a background color:</p>
+            <input type="color" id="theme-color-picker" />
+            <div class="modal-actions">
+                <button class="btn-confirm" onclick="onConfirmThemeChange()">OK</button>
+                <button class="btn-cancel" onclick="onCancelThemeChange()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
     <footer class="footer-container">
         <div class="search-history"></div>
         <button class="btn-clear-history" onclick="onClearHistory()"><i class="fa-solid fa-trash-can"></i></button>
+        <button class="btn-change-theme" onclick="onOpenThemeModal()">Change Theme</button>
     </footer>
+    
 
     <script src="js/lib/axios.js"></script>
     <script src="js/service/storage-service.js"></script>

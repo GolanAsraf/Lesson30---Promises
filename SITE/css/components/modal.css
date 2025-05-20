@@ -30,30 +30,32 @@
     margin-top: 20px;
 }
 
-.btn-confirm {
-    background-color: #d9534f;
-    color: white;
-    border: none;
+.btn-confirm, .btn-cancel {
     padding: 10px 20px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.btn-confirm {
+    background-color: #5cb85c;
+    color: white;
 }
 
 .btn-confirm:hover {
-    background-color: #c9302c;
+    background-color: #4cae4c;
 }
 
 .btn-cancel {
-    background-color: #5bc0de;
+    background-color: #d9534f;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-cancel:hover {
-    background-color: #31b0d5;
+    background-color: #c9302c;
+}
+
+.modal-content input{
+    margin-top: 10px;
 }

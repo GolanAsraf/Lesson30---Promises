@@ -60,60 +60,59 @@ function onSearch(randomSearch = false) {
 }
 
 function renderYTResults(res) {
-    const ytContainer = document.querySelector('.video-list');
-    const videoPlayer = document.querySelector('.video-player'); // Assuming this is the iframe element
+    const ytContainer = document.querySelector('.video-list')
+    const videoPlayer = document.querySelector('.video-player') 
 
-    ytContainer.innerHTML = '';
+    ytContainer.innerHTML = ''
 
-    // Update the iframe to the first video link
     if (res.length > 0) {
-        const firstVideoId = res[0].id.videoId;
-        const firstVideoUrl = `https://www.youtube.com/embed/${firstVideoId}`;
+        const firstVideoId = res[0].id.videoId
+        const firstVideoUrl = `https://www.youtube.com/embed/${firstVideoId}`
         if (videoPlayer) {
-            videoPlayer.src = firstVideoUrl; // Set the iframe's src to the first video
+            videoPlayer.src = firstVideoUrl
         } else {
-            console.error('Video player iframe not found');
+            console.error('Video player iframe not found')
         }
     }
 
     res.forEach(item => {
-        const videoId = item.id.videoId;
-        const videoUrl = `https://www.youtube.com/embed/${videoId}`; // Embed URL for iframe
-        const videoTitle = item.snippet.title;
-        const thumbnailUrl = item.snippet.thumbnails.default.url;
+        const videoId = item.id.videoId
+        const videoUrl = `https://www.youtube.com/embed/${videoId}` 
+        const videoTitle = item.snippet.title
+        const thumbnailUrl = item.snippet.thumbnails.default.url
 
         // Create a container for each video
-        const videoItem = document.createElement('div');
-        videoItem.classList.add('video-item'); // Add a class for styling
+        const videoItem = document.createElement('div')
+        videoItem.classList.add('video-item') // Add a class for styling
 
         // Add the thumbnail
-        const thumbnail = document.createElement('img');
-        thumbnail.src = thumbnailUrl;
-        thumbnail.alt = videoTitle;
-        thumbnail.classList.add('video-thumbnail'); // Add a class for styling
+        const thumbnail = document.createElement('img')
+        thumbnail.src = thumbnailUrl
+        thumbnail.alt = videoTitle
+        thumbnail.classList.add('video-thumbnail') // Add a class for styling
 
         // Add the title
-        const title = document.createElement('span'); // Use a span instead of a link
-        title.textContent = videoTitle;
-        title.classList.add('video-title'); // Add a class for styling
-        title.style.cursor = 'pointer'; // Make it look clickable
+        const title = document.createElement('span') // Use a span instead of a link
+        title.textContent = videoTitle
+        title.classList.add('video-title') // Add a class for styling
+        title.style.cursor = 'pointer' // Make it look clickable
 
         // Add a click event to update the iframe's src
         title.addEventListener('click', () => {
             if (videoPlayer) {
-                videoPlayer.src = videoUrl; // Update the iframe's src
+                videoPlayer.src = videoUrl // Update the iframe's src
             } else {
-                console.error('Video player iframe not found');
+                console.error('Video player iframe not found')
             }
-        });
+        })
 
         // Append thumbnail and title to the video item
-        videoItem.appendChild(thumbnail);
-        videoItem.appendChild(title);
+        videoItem.appendChild(thumbnail)
+        videoItem.appendChild(title)
 
         // Append the video item to the container
-        ytContainer.appendChild(videoItem);
-    });
+        ytContainer.appendChild(videoItem)
+    })
 }
 
 function renderWikiResults(res) {
@@ -147,24 +146,40 @@ function loadSearchHistory() {
 }
 
 function onClearHistory() {
-    // Show the modal
-    const modal = document.getElementById('confirm-modal');
-    modal.classList.remove('hidden');
+    const modal = document.getElementById('confirm-modal')
+    modal.classList.remove('hidden')
 }
 
 function onConfirmClearHistory() {
-    // Clear the search history
-    localStorage.clear(); // Assuming search history is stored in localStorage
-    const searchHistoryContainer = document.querySelector('.search-history');
-    searchHistoryContainer.innerHTML = ''; // Clear the UI
+    localStorage.clear() 
+    const searchHistoryContainer = document.querySelector('.search-history')
+    searchHistoryContainer.innerHTML = ''
 
-    // Hide the modal
-    const modal = document.getElementById('confirm-modal');
-    modal.classList.add('hidden');
+    const modal = document.getElementById('confirm-modal')
+    modal.classList.add('hidden')
 }
 
 function onCancelClearHistory() {
-    // Hide the modal without clearing history
-    const modal = document.getElementById('confirm-modal');
-    modal.classList.add('hidden');
+    const modal = document.getElementById('confirm-modal')
+    modal.classList.add('hidden')
+}
+
+function onOpenThemeModal() {
+    const modal = document.getElementById('theme-modal')
+    modal.classList.remove('hidden')
+}
+
+function onConfirmThemeChange() {
+    const colorPicker = document.getElementById('theme-color-picker')
+    const selectedColor = colorPicker.value
+
+    document.body.style.backgroundColor = selectedColor
+
+    const modal = document.getElementById('theme-modal')
+    modal.classList.add('hidden')
+}
+
+function onCancelThemeChange() {
+    const modal = document.getElementById('theme-modal')
+    modal.classList.add('hidden')
 }
